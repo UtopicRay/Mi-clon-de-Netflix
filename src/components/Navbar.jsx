@@ -7,7 +7,7 @@ import caret_icon from "../assets/caret_icon.svg";
 export default function Navbar() {
   return (
     <nav
-      className="flex justify-between items-center p-5 z-1 fixed w-full bg-[linear-gradient(180deg,rbga(0,0,0,0.7) 10%,transparent)]"
+      className="flex justify-between items-center p-5 z-10 fixed w-full bg-[linear-gradient(180deg,rbga(0,0,0,0.7) 10%,transparent)]"
       style={{
         backgroundImage:
           "linear-gradient(180deg, rgba(0,0,0,0.7) 10%,transparent)",
@@ -24,28 +24,28 @@ export default function Navbar() {
           <li>Browse by Langueges</li>
         </ul>
       </div>
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 z-10">
         <img src={search_icon}></img>
         <p>Children</p>
         <img src={bell_icon} alt="" />
-        <div className="flex">
+        <div className="flex z-1">
           <button
             id="dropdownAvatarNameButton"
             data-dropdown-toggle="dropdownAvatarName"
-            class="flex items-center text-sm pe-1 font-medium text-gray-900 rounded-full hover:text-blue-600 dark:hover:text-blue-500 md:me-0  dark:focus:ring-gray-700 dark:text-white"
+            className="flex items-center text-sm pe-1 font-medium text-gray-900 rounded-full hover:text-blue-600 dark:hover:text-blue-500 md:me-0  dark:focus:ring-gray-700 dark:text-white"
             type="button"
           >
-            <span class="sr-only">Open user menu</span>
+            <span className="sr-only">Open user menu</span>
             <img src={profile_img} alt="" />
-            Bonnie Green
+            <p className="text-white mx-2">userName</p>
             <img src={caret_icon} alt="" />
           </button>
           <div
             id="dropdownAvatarName"
-            class="z-10 hidden bg-gray-600  divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
+            className="z-10 hidden bg-gray-600  divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
           >
-            <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-              <div class="truncate"> <a href="#" className="text-white hover:underline">Sing out</a></div>
+            <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
+              <div className="truncate"> <a href="#" className="text-white hover:underline">Sing out</a></div>
             </div>
           </div>
           </div>
