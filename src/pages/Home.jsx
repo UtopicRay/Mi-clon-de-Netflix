@@ -1,12 +1,14 @@
-import React from 'react'
-import hero_banner from '../../public/hero_banner.jpg'
+import hero_banner from '/hero_banner.jpg'
 import hero_title from '../assets/hero_title.png'
 import player_icon from '../assets/play_icon.png'
 import info_icon from '../assets/info_icon.png'
 import TitleCards from '../components/TitleCards'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 export default function Home() {
   return (
     <>
+    <Navbar></Navbar>
     <div className='relative'>
       <img src={hero_banner} className='banner_img ' alt='imagen de la pelicula'
       style={{maskImage:'linear-gradient(to right,transparent, black 75%)'}}
@@ -24,14 +26,14 @@ export default function Home() {
           Description
         </button>
         </div>
-        <TitleCards></TitleCards>
+        <TitleCards category='popular'></TitleCards>
         </div>
     </div>
     <div className='pl-[3%]'>
-      <TitleCards></TitleCards>
-      <TitleCards></TitleCards>
-      <TitleCards></TitleCards>
-      <TitleCards></TitleCards>
+      <TitleCards title='Only on Netflix'></TitleCards>
+      <TitleCards title='Upcoming' category='upcoming'></TitleCards>
+      <TitleCards title='Top Pick for you' category='top_rated'></TitleCards>
     </div>
+    <Footer></Footer>
     </>)
 }
