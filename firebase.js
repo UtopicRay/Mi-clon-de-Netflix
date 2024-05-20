@@ -1,8 +1,9 @@
 // Import the functions you need from the SDKs you need
 import {initializeApp} from "firebase/app";
-import {getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, singOut} from 'firebase/auth';
-import {addDoc, colletion, getFirestore} from 'firebase/firestore';
+import {getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut} from 'firebase/auth';
+import {addDoc, collection, getFirestore} from 'firebase/firestore';
 import {getAnalytics} from "firebase/analytics";
+import {toast} from "react-toastify";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -24,18 +25,19 @@ const analytics = getAnalytics(app);
 const auth = getAuth();
 const db = getFirestore()
 
-async function signIn(name, email, password) {
+async function signUp(name, email, password) {
     try {
         const res = await createUserWithEmailAndPassword(auth, email, password);
         const user = res.user;
-        await addDoc(colletion(db, "user"), {
+        await addDoc(collection(db, "user"), {
             uid: user.uid,
             name,
             authPovider: 'local',
             email,
         })
+        toast.success('Usuario registrado con exito')
     } catch (error) {
-        alert(error)
+        toast.error(error.code.split('/')[1].split('-').join(" "))
     }
 }
 
@@ -43,12 +45,12 @@ async function login(email, password) {
     try {
        await signInWithEmailAndPassword(auth, email, password)
     } catch (error) {
-        alert(error)
+        toast.error(error.code.split('/')[1].split('-').join(" "))
     }
 }
 
 function logout() {
-    singOut()
+    signOut(auth)
 }
 
-export {logout, login, auth, signIn,db}
+export {logout, login, auth, signUp,db}
