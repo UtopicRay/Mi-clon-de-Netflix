@@ -1,13 +1,13 @@
-import React from "react";
 import logo from "../assets/logo.png";
 import profile_img from "../assets/profile_img.png";
 import search_icon from "../assets/search_icon.svg";
 import bell_icon from "../assets/bell_icon.svg";
 import caret_icon from "../assets/caret_icon.svg";
+import {Link} from "react-router-dom";
 export default function Navbar() {
   return (
     <nav
-      className="flex justify-between items-center p-5 z-10 fixed w-full bg-[linear-gradient(180deg,rbga(0,0,0,0.7) 10%,transparent)]"
+      className="flex justify-between items-center p-5 z-10  w-full fixed"
       style={{
         backgroundImage:
           "linear-gradient(180deg, rgba(0,0,0,0.7) 10%,transparent)",
@@ -16,7 +16,7 @@ export default function Navbar() {
       <div className="flex">
         <img src={logo} className="w-20" alt="logo de NexFlix"></img>
         <ul className="flex ml-10">
-          <li className="mr-3 cursor-pointer">Home</li>
+          <li className="mr-3 cursor-pointer"><Link to='/'>Home</Link></li>
           <li className="mr-3 cursor-pointer">Tv Shows</li>
           <li className="mr-3 cursor-pointer">Movies</li>
           <li className="mr-3 cursor-pointer">New & Popular</li>
