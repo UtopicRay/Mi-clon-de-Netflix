@@ -24,11 +24,6 @@ export function MovieCard({
         return salida;
     }
 
-// Ejemplo de uso
-    const tiempoEnMinutos = 115;
-    const resultado = convertirAHoraMinutos(tiempoEnMinutos);
-    console.log(resultado); // Salida: 1 hora y 55 minutos
-
     return (
         <div className='container m-auto bg-white/50 rounded-lg'>
             <div className="p-3 grid grid-cols-2 font-sans">
