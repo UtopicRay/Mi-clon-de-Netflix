@@ -4,6 +4,7 @@ import {getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sig
 import {addDoc, collection, getFirestore} from 'firebase/firestore';
 import {getAnalytics} from "firebase/analytics";
 import {toast} from "react-toastify";
+import {redirect} from "react-router-dom";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -35,7 +36,7 @@ async function signUp(name, email, password) {
             authPovider: 'local',
             email,
         })
-        toast.success('Usuario registrado con exito')
+        toast.success('Usuario registrado con exito');
     } catch (error) {
         toast.error(error.code.split('/')[1].split('-').join(" "))
     }
@@ -43,7 +44,8 @@ async function signUp(name, email, password) {
 
 async function login(email, password) {
     try {
-       await signInWithEmailAndPassword(auth, email, password)
+        await signInWithEmailAndPassword(auth, email, password)
+        toast.success('Usuario Logeado con exito')
     } catch (error) {
         toast.error(error.code.split('/')[1].split('-').join(" "))
     }
@@ -51,6 +53,7 @@ async function login(email, password) {
 
 function logout() {
     signOut(auth)
+
 }
 
-export {logout, login, auth, signUp,db}
+export {logout, login, auth, signUp, db}
