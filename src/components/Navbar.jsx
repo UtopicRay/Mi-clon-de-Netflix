@@ -1,16 +1,18 @@
 import logo from "../assets/logo.png";
 import profile_img from "../assets/profile_img.png";
 import caret_icon from "../assets/caret_icon.svg";
-import {Link, Navigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {logout} from "../../firebase.js";
-import  {useContext} from "react";
+import {useContext, useState} from "react";
 import {AuthContext} from "../context/AuthContext.js";
 
 export default function Navbar() {
     const {currentUser} = useContext(AuthContext);
+    const navigate=useNavigate();
+    const [visible,setVisible]=useState(false);
     const handleLogout = () => {
         logout();
-        return <Navigate to={`/login`}></Navigate>
+        navigate('/login');
     }
     return (
         <nav
@@ -30,25 +32,21 @@ export default function Navbar() {
                 </ul>
             </div>
             <div className="flex items-center gap-3 z-10">
-                <div className="flex z-10">
+                <div className="flex flex-col z-10">
                     <button
-                        id="dropdownAvatarNameButton"
-                        data-dropdown-toggle="dropdownAvatarName"
                         className="flex items-center text-sm pe-1 font-medium text-gray-900 rounded-full hover:text-blue-600 dark:hover:text-blue-500 md:me-0  dark:focus:ring-gray-700 dark:text-white"
                         type="button"
+                        onClick={()=>setVisible(!visible)}
                     >
                         <span className="sr-only">Open user menu</span>
                         <img src={profile_img} alt="imagen de usuario de netflix"/>
                         {currentUser ? (<p className='text-white mx-2'>{currentUser}</p>) : ""}
                         <img className={`mx-2`} src={caret_icon} alt="imagen de buscador"/>
                     </button>
-                    <div
-                        id="dropdownAvatarName"
-                        className="z-10 hidden bg-gray-600  divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
-                    >
+                    <div className={`z-10 bg-gray-600 absolute right-4  divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600 top-14 ${visible?"animate-fade animate-duration-300":"hidden"}`}>
                         <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
                             <div className="truncate"> {currentUser ? (
-                                    <p className="text-white hover:underline" onClick={handleLogout}>Sing out</p>
+                                    <button className="text-white hover:underline" onClick={handleLogout}>Sing out</button>
                                 ) :
                                 (
                                     <Link to={`/login`} className="text-white hover:underline">login</Link>)

@@ -35,14 +35,14 @@ export default function Home() {
                             <Link to={`/player/${data.id}`}>
                                 <button type="button"
                                         className="text-black bg-white hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 inline-flex items-center gap-2 hover:duration-200 hover:transition-ease">
-                                    <img className='max-w-6 h-auto' src={player_icon}></img>
+                                    <img className='max-w-6 h-auto' src={player_icon} alt={`icono de play`}></img>
                                     Play
                                 </button>
                             </Link>
                             <Link to={`/movie/details/${data.id}`}>
                                 <button type="button"
                                         className="bg-white/5 text-white hover:text-white border border-gray-800 hover:bg-gray-900  font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 inline-flex items-center gap-2 hover:duration-200 hover:transition-ease">
-                                    <img className='max-w-6 h-auto' src={info_icon}></img>
+                                    <img className='max-w-6 h-auto' src={info_icon} alt={`icono de info`}></img>
                                     Description
                                 </button>
                             </Link>

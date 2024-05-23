@@ -5,7 +5,7 @@ import {AuthContext} from "./AuthContext.js";
 export const AuthProvider = ({children}) => {
     const [currentUser, setCurrentUser] = useState(null);
     auth?.onAuthStateChanged((user) => {
-        setCurrentUser(user.email);
+        setCurrentUser(user?.email);
     })
     return (
         <AuthContext.Provider value={{currentUser}}>
