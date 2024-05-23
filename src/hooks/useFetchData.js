@@ -37,6 +37,12 @@ export function useFetchData() {
             .catch((error) => setError(error))
             .finally(() => setIsLoading(false));
     }
+    async function SearchMovie(title){
+        await axios.get(`https://api.themoviedb.org/3/search/movie?query=${title}&include_adult=false&language=en-US&page=1`, {headers})
+            .then((response) => setData(response.data.results))
+            .catch((error) => setError(error))
+            .finally(() => setIsLoading(false));
+    }
 
-    return {data, error, isLoading, MovieDetails, SimilarMovies,FetchData,recommendations,PlayerMovies}
+    return {data, error, isLoading, MovieDetails, SimilarMovies,FetchData,recommendations,PlayerMovies,SearchMovie}
 }
