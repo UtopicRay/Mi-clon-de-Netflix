@@ -2,9 +2,7 @@
 import {initializeApp} from "firebase/app";
 import {getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut} from 'firebase/auth';
 import {addDoc, collection, getFirestore} from 'firebase/firestore';
-import {getAnalytics} from "firebase/analytics";
 import {toast} from "react-toastify";
-import {redirect} from "react-router-dom";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -22,7 +20,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 const auth = getAuth();
 const db = getFirestore()
 
@@ -45,7 +42,7 @@ async function signUp(name, email, password) {
 async function login(email, password) {
     try {
         await signInWithEmailAndPassword(auth, email, password)
-        toast.success('Usuario Logeado con exito')
+        return 'success';
     } catch (error) {
         toast.error(error.code.split('/')[1].split('-').join(" "))
     }
